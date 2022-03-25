@@ -39,13 +39,22 @@ android {
 
 dependencies {
 
+    // Kotlin
     implementation(KotlinX.coroutines.android)
+    implementation(KotlinX.serialization.json)
+
+    // Android
     implementation(AndroidX.core)
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.appCompat)
     implementation(Google.android.material)
     implementation(AndroidX.constraintLayout)
 
+    // HTTP
+    implementation(Square.okHttp3)
+    implementation(Square.retrofit2)
+
+    // Testing
     testImplementation(Testing.junit4)
     testImplementation(KotlinX.coroutines.test)
 
