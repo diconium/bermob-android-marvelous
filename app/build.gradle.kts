@@ -1,7 +1,21 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
 }
+
+val localProperties = with(File("local.properties")) {
+    Properties().also {
+        if (exists()) {
+            it.load(FileInputStream(this))
+        }
+    }
+}
+
+val marvelPublicKey: String by localProperties
+val marvelPrivateKey: String by localProperties
 
 android {
     compileSdk = 31
@@ -14,6 +28,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "marvelPublicKey", "\"${marvelPublicKey}\"")
+        buildConfigField("String", "marvelPrivateKey", "\"${marvelPrivateKey}\"")
     }
 
     buildTypes {
@@ -39,22 +56,22 @@ android {
 
 dependencies {
 
-    // Kotlin
+// Kotlin
     implementation(KotlinX.coroutines.android)
     implementation(KotlinX.serialization.json)
 
-    // Android
+// Android
     implementation(AndroidX.core)
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.appCompat)
     implementation(Google.android.material)
     implementation(AndroidX.constraintLayout)
 
-    // HTTP
+// HTTP
     implementation(Square.okHttp3)
     implementation(Square.retrofit2)
 
-    // Testing
+// Testing
     testImplementation(Testing.junit4)
     testImplementation(KotlinX.coroutines.test)
 
