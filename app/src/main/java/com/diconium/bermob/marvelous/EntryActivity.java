@@ -9,18 +9,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-// TODO: Organize the packages according to app architecture
-// TODO: Convert to Fragment (in Kotlin) and move to the MainActivity
+// TODO: https://github.com/diconium/bermob-android-marvelous/issues/4 architecture
+// TODO: https://github.com/diconium/bermob-android-marvelous/issues/5 fragment
 public class EntryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // TODO: Refactor to use ViewBinding
         setContentView(R.layout.activity_main);
 
-        // TODO: style the SearchView icon and text
+        // TODO: https://github.com/diconium/bermob-android-marvelous/issues/6 style
         SearchView search = findViewById(R.id.search);
         search.setOnQueryTextListener(this);
     }
@@ -41,7 +39,7 @@ public class EntryActivity extends AppCompatActivity implements SearchView.OnQue
     }
 
     private void onSearch(@NonNull String query) {
-        // TODO: Fix to provide data safety
+        // TODO: https://github.com/diconium/bermob-android-marvelous/issues/7 type safety
         Intent i = new Intent(this, MainActivity.class);
         i.setData(Uri.parse("marvelous://marvel?" + query));
         startActivity(i);

@@ -25,7 +25,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // TODO: Refactor to use ViewBinding
+        // TODO: https://github.com/diconium/bermob-android-marvelous/issues/10 ViewBinding
         val root = inflater.inflate(R.layout.frag_search, container, false)
         val recycler = root.findViewById<RecyclerView>(R.id.recycler)
         val adapter = Adapter()
@@ -40,11 +40,11 @@ class SearchFragment : Fragment() {
     private val viewModelFactory = object : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
-            // TODO: Refactor to use the fragment own arguments
+            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/11 arguments
             val query = requireActivity().intent.data?.query
                 ?: throw IllegalArgumentException("No query found")
 
-            // TODO: Refactor to use dependency injection
+            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/12 DI
             val client = OkHttpClient()
             val retrofit = Retrofit.Builder()
                 .client(client)
@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
     }
 }
 
-// TODO: Refactor to ListAdapter
+// TODO: https://github.com/diconium/bermob-android-marvelous/issues/13 ListAdapter
 private class Adapter : RecyclerView.Adapter<Holder>() {
 
     var data: List<TempData> = emptyList()
@@ -78,10 +78,10 @@ private class Adapter : RecyclerView.Adapter<Holder>() {
 
 }
 
-// TODO: Refactor to use ViewBinding
+// TODO: https://github.com/diconium/bermob-android-marvelous/issues/10 ViewBinding
 private class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val image = itemView.findViewById<ImageView>(R.id.image)
-    val title = itemView.findViewById<TextView>(R.id.title)
-    val subtitle = itemView.findViewById<TextView>(R.id.subtitle)
+    val image: ImageView = itemView.findViewById(R.id.image)
+    val title: TextView = itemView.findViewById(R.id.title)
+    val subtitle: TextView = itemView.findViewById(R.id.subtitle)
 
 }
