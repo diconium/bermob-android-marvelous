@@ -49,8 +49,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    lint {
+        abortOnError = false
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.1"
     }
 }
 
@@ -63,13 +71,43 @@ dependencies {
 // Android
     implementation(AndroidX.core)
     implementation(AndroidX.core.ktx)
+    // Arch
     implementation(AndroidX.appCompat)
+    implementation(AndroidX.activity)
+    implementation(AndroidX.activity.ktx)
+    implementation(AndroidX.fragment)
+    implementation(AndroidX.fragment.ktx)
+    implementation(AndroidX.lifecycle.liveData)
+    implementation(AndroidX.lifecycle.liveDataKtx)
+    implementation(AndroidX.lifecycle.viewModel)
+    implementation(AndroidX.lifecycle.viewModelKtx)
+    implementation(AndroidX.lifecycle.viewModelSavedState)
+    implementation(AndroidX.lifecycle.process)
+    // UI
     implementation(Google.android.material)
     implementation(AndroidX.constraintLayout)
+    implementation(AndroidX.recyclerView)
+
+// Compose
+    implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.ui.tooling)
+    implementation(AndroidX.compose.ui.graphics)
+    implementation(AndroidX.compose.ui.text)
+    implementation(AndroidX.compose.runtime)
+    implementation(AndroidX.navigation.compose)
+    implementation(AndroidX.compose.foundation)
+    implementation(AndroidX.compose.animation)
+    implementation(AndroidX.compose.material)
+    implementation(AndroidX.compose.material.icons.core)
+    implementation(AndroidX.compose.material.ripple)
+    implementation(AndroidX.lifecycle.viewModelCompose)
+    implementation(AndroidX.constraintLayout.compose)
 
 // HTTP
     implementation(Square.okHttp3)
     implementation(Square.retrofit2)
+    implementation(JakeWharton.retrofit2.converter.kotlinxSerialization)
+    implementation(Libs.glide)
 
 // Testing
     testImplementation(Testing.junit4)
