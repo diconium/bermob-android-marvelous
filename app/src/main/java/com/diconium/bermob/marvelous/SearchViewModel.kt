@@ -10,13 +10,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-// TODO: Create tests for this class
+// TODO: https://github.com/diconium/bermob-android-marvelous/issues/14 tests
 class SearchViewModel(
     private val query: String,
     private val service: MarvelService,
 ) : ViewModel() {
 
-    // TODO: Improve this logic to use Flows
+    // TODO: https://github.com/diconium/bermob-android-marvelous/issues/15 Flows
     private var items = mutableListOf<TempData>()
     private val _data = MutableLiveData<List<TempData>>()
     val data: LiveData<List<TempData>> = _data
