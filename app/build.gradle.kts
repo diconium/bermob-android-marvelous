@@ -4,6 +4,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 val localProperties = with(File("local.properties")) {
@@ -102,6 +103,10 @@ dependencies {
     implementation(AndroidX.compose.material.ripple)
     implementation(AndroidX.lifecycle.viewModelCompose)
     implementation(AndroidX.constraintLayout.compose)
+
+// Navigation
+    implementation(AndroidX.navigation.uiKtx)
+    implementation(AndroidX.navigation.fragmentKtx)
 
 // HTTP
     implementation(Square.okHttp3)

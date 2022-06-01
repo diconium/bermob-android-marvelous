@@ -1,47 +1,36 @@
-package com.diconium.bermob.marvelous;
+package com.diconium.bermob.marvelous
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 // TODO: https://github.com/diconium/bermob-android-marvelous/issues/4 architecture
 // TODO: https://github.com/diconium/bermob-android-marvelous/issues/5 fragment
-public class EntryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+class EntryFragment : Fragment(R.layout.frag_entry), SearchView.OnQueryTextListener {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // TODO: https://github.com/diconium/bermob-android-marvelous/issues/6 style
-        SearchView search = findViewById(R.id.search);
-        search.setOnQueryTextListener(this);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val search: SearchView = view.findViewById(R.id.search)
+        search.setOnQueryTextListener(this)
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        String q = query.trim();
-        if (q.length() > 0) {
-            onSearch(q);
+    override fun onQueryTextSubmit(query: String): Boolean {
+        val q = query.trim { it <= ' ' }
+        if (q.isNotEmpty()) {
+            onSearch(q)
         }
-        return true;
+        return true
     }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
+    override fun onQueryTextChange(newText: String): Boolean {
         // no-op
-        return true;
+        return true
     }
 
-    private void onSearch(@NonNull String query) {
+    private fun onSearch(query: String) {
         // TODO: https://github.com/diconium/bermob-android-marvelous/issues/7 type safety
-        Intent i = new Intent(this, MainActivity.class);
-        i.setData(Uri.parse("marvelous://marvel?" + query));
-        startActivity(i);
+        findNavController().navigate(EntryFragmentDirections.toSearchFragment(query))
     }
 }
