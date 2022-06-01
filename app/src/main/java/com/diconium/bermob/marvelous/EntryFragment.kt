@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 // TODO: https://github.com/diconium/bermob-android-marvelous/issues/4 architecture
-// TODO: https://github.com/diconium/bermob-android-marvelous/issues/5 fragment
 class EntryFragment : Fragment(R.layout.frag_entry), SearchView.OnQueryTextListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +29,6 @@ class EntryFragment : Fragment(R.layout.frag_entry), SearchView.OnQueryTextListe
     }
 
     private fun onSearch(query: String) {
-        // TODO: https://github.com/diconium/bermob-android-marvelous/issues/7 type safety
         findNavController().navigate(EntryFragmentDirections.toSearchFragment(query))
     }
 }

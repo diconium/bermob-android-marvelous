@@ -48,7 +48,6 @@ class SearchFragment : Fragment() {
     private val viewModelFactory = object : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
-            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/11 arguments
             val query = arguments.query
 
             // TODO: https://github.com/diconium/bermob-android-marvelous/issues/12 DI
@@ -63,7 +62,6 @@ class SearchFragment : Fragment() {
     }
 }
 
-// TODO: https://github.com/diconium/bermob-android-marvelous/issues/13 ListAdapter
 private class Adapter : ListAdapter<CharacterResponse, Holder>(diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
