@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
     id("kotlin-android")
+    id("com.android.application")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 val localProperties = with(File("local.properties")) {
@@ -71,6 +74,11 @@ dependencies {
 // Android
     implementation(AndroidX.core)
     implementation(AndroidX.core.ktx)
+
+    implementation("com.google.dagger:hilt-android:_")
+    kapt("com.google.dagger:hilt-android-compiler:_")
+
+
     // Arch
     implementation(AndroidX.appCompat)
     implementation(AndroidX.activity)
