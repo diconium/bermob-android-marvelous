@@ -8,16 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.diconium.bermob.marvelous.service.MarvelService
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
-    private val vm by viewModels<SearchViewModel> { viewModelFactory }
+    private val vm by viewModels<SearchViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,23 +34,19 @@ class SearchFragment : Fragment() {
         return root
     }
 
-    private val viewModelFactory = object : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-
-            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/11 arguments
-            val query = requireActivity().intent.data?.query
-                ?: throw IllegalArgumentException("No query found")
-
-            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/12 DI
-            val client = OkHttpClient()
-            val retrofit = Retrofit.Builder()
-                .client(client)
-                .baseUrl("https://marvel.com/api/v1/")
-                .build()
-            val service = retrofit.create(MarvelService::class.java)
-            return SearchViewModel(query, service) as T
-        }
-    }
+//    private val viewModelFactory = object : ViewModelProvider.Factory {
+//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//
+//            // TODO: https://github.com/diconium/bermob-android-marvelous/issues/11 arguments
+//            val query = requireActivity().intent.data?.query
+//                ?: throw IllegalArgumentException("No query found")
+//
+//
+//
+//
+//            return SearchViewModel(query, repo) as T
+//        }
+//    }
 }
 
 // TODO: https://github.com/diconium/bermob-android-marvelous/issues/13 ListAdapter

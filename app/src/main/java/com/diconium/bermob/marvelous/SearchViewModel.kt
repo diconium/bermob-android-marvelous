@@ -4,17 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diconium.bermob.marvelous.service.MarvelService
+import com.diconium.bermob.marvelous.repository.MarvelRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 // TODO: https://github.com/diconium/bermob-android-marvelous/issues/14 tests
-class SearchViewModel(
-    private val query: String,
-    private val service: MarvelService,
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    // private val query: String,
+    private val repo: MarvelRepository,
 ) : ViewModel() {
+
 
     // TODO: https://github.com/diconium/bermob-android-marvelous/issues/15 Flows
     private var items = mutableListOf<TempData>()
